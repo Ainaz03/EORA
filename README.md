@@ -33,22 +33,6 @@ Mock-режим (по умолчанию) — позволяет запуска�
 }
 
 ## Как это работает (архитектура и ключевые файлы)
-eora-llm-assistant/
-├─ app/
-│  ├─ main.py          # FastAPI app и endpoint /query
-│  ├─ scraper.py       # скачивание и кеширование страниц
-│  ├─ retriever.py     # TF-IDF, разбиение на отрывки, поиск top-k
-│  ├─ llm_client.py    # mock / real OpenAI integration
-│  ├─ config.py        # конфигурация (.env)
-│  └─ sources.txt      # список исходных URL (список ссылок)
-├─ data/
-│  └─ cache/           # кешированные тексты (игнорятся в git)
-├─ requirements.txt
-├─ .env.example
-├─ .gitignore
-└─ README.md
-
-### Кратко:
 
 main.py вызывает ensure_cached_texts(urls) → retriever.retrieve(question, urls, top_k) → llm.ask_with_context(question, top_docs) → ответ клиенту.
 
